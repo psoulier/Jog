@@ -34,20 +34,17 @@ public class MemoryLogger implements Logger {
 
   public void print() {
     int currentPosition = 0;
+    int entries = pos;
 
     if (wrapped == true) {
-      currentPosition = (pos + 1) % logSize;
+      currentPosition = pos;
+      entries = logSize;
     }
 
-    while (currentPosition != pos) {
+    for (int i = 0; i < entries; i++) {
       System.out.println(messages[currentPosition]);
       currentPosition = (currentPosition + 1) % logSize;
     }
-
-    if (wrapped) {
-      System.out.println(messages[pos]);
-    }
-
 
   }
 
